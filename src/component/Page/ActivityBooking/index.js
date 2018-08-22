@@ -284,12 +284,12 @@ class ActivityBooking extends React.Component {
         'Reserve': reserve? 'RSVD':'CANN'
       }
       axios.post(process.env.REACT_APP_API + 'updEvtErl' , data).then(res=>{
-        //console.log(res);
+        console.log(res);
         this.setState({
           routeState: !reserve? 'cancelConfirm': 'bookingSuccess'
         });
       }).catch(err=>{
-        //console.log(err.message);
+        console.log(err.message);
         this.setState({
           routeState: 'activityDetail'
         });
