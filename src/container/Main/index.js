@@ -77,10 +77,10 @@ export default class Main extends React.Component {
 
     login = async (id,pw) => {
 
-      //userid: "alex3288@gmail.com"
-      //password: "asdf2013"
+      const userid = "alex3288@gmail.com"
+      const password = "asdf2013"
 
-      let _currentPage = {
+      /*let _currentPage = {
           title: '仁濟心連心',
           mainmenu: true,
           logoutBtn: true,
@@ -92,17 +92,17 @@ export default class Main extends React.Component {
         currentPage: _currentPage,
         profile: {}
       });
-      return;
+      return;*/
 
       axios.post(process.env.REACT_APP_LOGIN,JSON.stringify({}),{
           headers: {
-            'userid': id,
-            'password': pw
+            'userid': userid,
+            'password': password
           }
         }
       )
       .then(async (res)=>{
-        //console.log(res);
+        console.log(res);
         if(!res.data.status){
           return;
         }

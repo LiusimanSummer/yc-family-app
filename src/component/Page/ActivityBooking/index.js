@@ -272,24 +272,44 @@ class ActivityBooking extends React.Component {
       const activity = this.props.activity;
       //console.log(prfl);
       //console.log(activity);
+      console.log(prfl);
       const data = {
-        'MEMID': prfl.residentId,
-        'CTRID': 'JCH',
-        'EvtCod': activity.EvtCod,
-        'ErlName': activity.EvtNam,
-        'ErlDat': this.getDateString(),
-        'IsMbr': '1',
-        'ErlPhone': '12345678',
-        'EvtCosID': '1',
-        'Reserve': reserve? 'RSVD':'CANN'
+        MEMID: prfl.residentId,
+        CTRID: 'JCH',
+        EvtCod: activity.EvtCod,
+        ErlName: prfl.residentName,
+        ErlDat: this.getDateString(),
+        IsMbr: '1',
+        ErlPhone: '12345678',
+        EvtCosID: '1',
+        Reserve: reserve? 'RSVD':'CANN'
       }
-      axios.post(process.env.REACT_APP_API + 'updEvtErl' , data).then(res=>{
+      /*const data = {
+        MEMID:"JCH2018024",
+        CTRID:"JCH",
+        EvtCod:"JCH/2018-2019/05",
+        ErlName:"許少珍",
+        ErlDat:"2018-08-24",
+        IsMbr:"1",
+        ErlPhone:"12345678",
+        EvtCosID:"1",
+        EvtAct:"CANN"
+      }*/
+
+      console.log(data);
+      axios({
+      	method: 'post',
+      	url: process.env.REACT_APP_EHMS_API + 'updEvtErl',
+      	data: data,
+      	headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      })
+      .then(res=>{
         console.log(res);
         this.setState({
           routeState: !reserve? 'cancelConfirm': 'bookingSuccess'
         });
       }).catch(err=>{
-        console.log(err.message);
+        console.log(err);
         this.setState({
           routeState: 'activityDetail'
         });

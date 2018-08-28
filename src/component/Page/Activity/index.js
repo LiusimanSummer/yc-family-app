@@ -18,7 +18,7 @@ class ActivityPage extends React.Component {
 
   async fetchData(){
     var activities = await axios.get(process.env.REACT_APP_API + 'activities')
-    //console.log(activities.data.activities)
+    console.log(activities.data.activities)
     this.setState({
       list: activities.data.activities
     });
