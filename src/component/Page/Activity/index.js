@@ -39,7 +39,7 @@ class ActivityPage extends React.Component {
     let activityListContainer = {
         minHeight: window.innerHeight - 150,
         paddingTop: 75,
-        width: '90%',
+        width: window.innerWidth * 0.9,
         textAlign: 'center',
         margin: 'auto'
     };
@@ -57,15 +57,6 @@ class ActivityPage extends React.Component {
 }
 
 const styles = {
-
-    activityListContainer: {
-        minHeight: window.innerHeight - 150,
-        paddingTop: 75,
-        width: '90%',
-        textAlign: 'center',
-        margin: 'auto'
-    },
-
     activityContainer: {
         //width: '80%',
         //height: 64,

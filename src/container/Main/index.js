@@ -37,19 +37,28 @@ export default class Main extends React.Component {
     componentDidMount() {
       this.updateWindowDimensions();
       window.addEventListener('resize', this.updateWindowDimensions.bind(this));
+      window.addEventListener('orientationchange', this.updateWindowDimensions.bind(this));
     }
 
     componentWillUnmount() {
       window.removeEventListener('resize', this.updateWindowDimensions.bind(this));
+      window.removeEventListener('orientationchange', this.updateWindowDimensions.bind(this));
     }
 
     updateWindowDimensions() {
+      const width = this.state.dimemsion.width;
       this.setState({
         dimemsion:{
           width: window.innerWidth,
           height: window.innerHeight
         }
       });
+      console.log(width);
+      console.log(window.innerWidth);
+      if(width - window.innerWidth > 1){
+        window.location.reload();
+      }
+      //window.location.reload();
     }
 
     logout(){
@@ -85,8 +94,8 @@ export default class Main extends React.Component {
 
     login = async (id,pw) => {
 
-      const userid = "alex3288@gmail.com"
-      const password = "asdf2013"
+      //const userid = "alex3288@gmail.com"
+      //const password = "asdf2013"
 
       /*let _currentPage = {
           title: '仁濟心連心',
@@ -220,14 +229,15 @@ export default class Main extends React.Component {
 
     render() {
         let curPage = this.state.currentPage;
-let container = {
-    width: '100%',
-    minHeight: window.innerHeight,
-    backgroundColor: '#FCF4E7',
-    textAlign: 'center',
-    display: 'flex',
-    flexFlow: 'column nowrap'
-}
+        let container = {
+            width: this.state.dimemsion.width,
+            minHeight: this.state.dimemsion.height,
+            backgroundColor: '#FCF4E7',
+            textAlign: 'center',
+            display: 'flex',
+            flexFlow: 'column nowrap',
+            orient: 'portrait'
+        }
         return (
             <div style={container}>
               <HeaderBar
@@ -251,14 +261,3 @@ let container = {
         );
     }
 }
-
-const styles = {
-    container: {
-        width: '100%',
-        minHeight: window.innerHeight,
-        backgroundColor: '#FCF4E7',
-        textAlign: 'center',
-        display: 'flex',
-        flexFlow: 'column nowrap'
-    }
-};

@@ -1,14 +1,7 @@
 import React from 'react';
 
 const styles = {
-    container: {
-        width: '100%',
-        minHeight: window.innerHeight - 150,
-        backgroundColor: '#FCF4E7',
-        textAlign: 'center',
-        margin: 'auto',
-        paddingTop:75
-    },
+
     photoContainer: {
         backgroundColor: '#AD1F25',
         height: (window.innerHeight - 100) * 0.25
@@ -46,7 +39,7 @@ export default class MainMenu extends React.Component {
 
     render() {
       let container = {
-          width: '100%',
+          width: window.innerWidth,
           minHeight: window.innerHeight - 150,
           backgroundColor: '#FCF4E7',
           textAlign: 'center',

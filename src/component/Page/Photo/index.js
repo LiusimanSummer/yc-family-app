@@ -37,7 +37,7 @@ export default class Photo extends React.Component {
       let imageContainer = {
         paddingTop: 55,
         minHeight: window.innerHeight - 150,
-        width: "100%",
+        width: window.innerWidth,
         textAlign: 'center'
       };
       return (

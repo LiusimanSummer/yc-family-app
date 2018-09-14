@@ -63,7 +63,7 @@ class Meal extends React.Component {
 
     render() {
       let container= {
-          width: '100%',
+          width: window.innerWidth,
           minHeight: window.innerHeight - 150,
           backgroundColor: '#FCF4E7',
           textAlign: 'center',
@@ -80,14 +80,7 @@ class Meal extends React.Component {
 }
 
 const styles = {
-    container: {
-        width: '100%',
-        minHeight: window.innerHeight - 150,
-        backgroundColor: '#FCF4E7',
-        textAlign: 'center',
-        margin: 'auto',
-        paddingTop:75
-    },
+
     mealMainContainer: {
       width: window.innerWidth,
       minHeight: (window.innerHeight - 150),

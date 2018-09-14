@@ -76,7 +76,8 @@ class Statement extends React.Component {
           paddingTop:90,
           paddingLeft: 12,
           paddingRight: 12,
-          minHeight: window.innerHeight - 200
+          minHeight: window.innerHeight - 200,
+          width:'100%'
       };
 
         return (
