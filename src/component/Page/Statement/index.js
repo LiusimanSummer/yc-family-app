@@ -69,13 +69,20 @@ class Statement extends React.Component {
     }
 
     render() {
+      let detailContainer =  {
+          color: '#666666',
+          fontSize: 12,
+          //marginTop: 80,
+          paddingTop:90,
+          paddingLeft: 12,
+          paddingRight: 12,
+          minHeight: window.innerHeight - 200
+      };
 
         return (
-            <div>
-                <div style={styles.detailContainer}>
+                <div style={detailContainer}>
                     {this._renderContent()}
                 </div>
-            </div>
         );
     }
 }

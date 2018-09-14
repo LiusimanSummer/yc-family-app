@@ -25,7 +25,7 @@ export default class Page extends React.Component {
 
         return (
             <div>
-                {curp.login && <Login login={this.props.login.bind(this)}/>}
+                {curp.login && <Login mainState={this.props.mainState} login={this.props.login.bind(this)}/>}
                 {curp.statement && <Statement content={curp.title} />}
                 {curp.mainmenu && <MainMenu goTo = {this.props.goTo.bind(this)}/>}
                 {curp.photo && <Photo />}

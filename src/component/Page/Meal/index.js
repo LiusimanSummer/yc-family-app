@@ -33,7 +33,7 @@ class Meal extends React.Component {
           }
         }
       }
-      //console.log(_mealMenu);
+      console.log(_mealMenu);
       this.setState({
         mealMenu: _mealMenu
       });
@@ -41,6 +41,7 @@ class Meal extends React.Component {
 
     renderMeal(){
       return this.state.mealMenu.map((meal,i)=>{
+        if(!meal){ return null;}
         return(
           <div key={i} style={styles.mealMenuContainer}>
             <div style={styles.mealMenuTitleBar1}>
@@ -61,8 +62,17 @@ class Meal extends React.Component {
 
 
     render() {
+      let container= {
+          width: '100%',
+          minHeight: window.innerHeight - 150,
+          backgroundColor: '#FCF4E7',
+          textAlign: 'center',
+          margin: 'auto',
+          paddingTop:75
+      };
       return (
-        <div style={styles.container} >
+
+        <div style={container} >
           {this.renderMeal()}
         </div>
       );

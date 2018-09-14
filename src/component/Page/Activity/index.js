@@ -36,9 +36,16 @@ class ActivityPage extends React.Component {
   }
 
   render() {
+    let activityListContainer = {
+        minHeight: window.innerHeight - 150,
+        paddingTop: 75,
+        width: '90%',
+        textAlign: 'center',
+        margin: 'auto'
+    };
     return (
       <div style={styles.container}>
-        <div style={styles.activityListContainer}>
+        <div style={activityListContainer}>
           {this._renderActivities()}
         </div>
         <div style={styles.homeContainer}>

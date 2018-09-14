@@ -10,6 +10,7 @@ export default class Main extends React.Component {
         super(props);
         this.state = {
             errorMsg: '',
+            loginFailed: false,
             isLogin: false,
             trace: [],
             currentPage: {
@@ -24,6 +25,13 @@ export default class Main extends React.Component {
               height: 0
             }
         };
+        this.autoLogin();
+    }
+
+    autoLogin(){
+      const id = localStorage.getItem('id');
+      const pw = localStorage.getItem('pw');
+      if(id && pw){ this.login(id,pw); }
     }
 
     componentDidMount() {
@@ -96,14 +104,19 @@ export default class Main extends React.Component {
 
       axios.post(process.env.REACT_APP_LOGIN,JSON.stringify({}),{
           headers: {
-            'userid': userid,
-            'password': password
+            'userid': id,
+            'password': pw
           }
         }
       )
       .then(async (res)=>{
+
+        localStorage.setItem('id', id);
+        localStorage.setItem('pw', pw);
+
         console.log(res);
         if(!res.data.status){
+          this.setState({ loginFailed: true });
           return;
         }
 
@@ -122,6 +135,7 @@ export default class Main extends React.Component {
 
         this.state.trace.splice(0, 0, _currentPage);
       }).catch(err=>{
+        this.setState({ loginFailed: true });
         console.log(err);
       });
 
@@ -206,9 +220,16 @@ export default class Main extends React.Component {
 
     render() {
         let curPage = this.state.currentPage;
-
+let container = {
+    width: '100%',
+    minHeight: window.innerHeight,
+    backgroundColor: '#FCF4E7',
+    textAlign: 'center',
+    display: 'flex',
+    flexFlow: 'column nowrap'
+}
         return (
-            <div style={styles.container}>
+            <div style={container}>
               <HeaderBar
                   title={curPage.title}
                   logoutBtn={curPage.logoutBtn}
@@ -220,6 +241,7 @@ export default class Main extends React.Component {
                   dimemsion={this.state.dimemsion}
                   logout={this.logout.bind(this)}/>
               <Page currentPage={curPage}
+                  mainState={this.state}
                   login={this.login.bind(this)}
                   goTo={this.goTo.bind(this)}
                   activitySelected={this.activitySelected.bind(this)}

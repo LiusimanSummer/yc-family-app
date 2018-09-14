@@ -4,16 +4,12 @@ import axios from 'axios';
 class ActivityBooking extends React.Component {
     constructor(props) {
         super(props);
+        const reservedArray = this.getReservedArray(props.activity.ErlStsDes);
         this.state = {
             routeState: props.routeState ? props.routeState : 'activityDetail',
             title: props.activity.EvtNam,
-            reserved: this.getReservedArray(this.props.activity.ErlStsDes),
-            registered: this.getRegisteredArray(this.props.activity.ErlStsDes)
+            reserved: reservedArray.includes(props.profile.nfcId.toUpperCase())
         };
-    }
-
-    componentWillReceiveProps(nextProps) {
-
     }
 
     _renderDetail = (detailObj) => {
@@ -109,9 +105,12 @@ class ActivityBooking extends React.Component {
 
     btnClick = async (btnId) => {
         if (btnId === 'activityDetail') {
-          //console.log(this.props.profile);
-          //console.log(this.state.reserved);
-          let isBooked = !this.state.reserved.includes(this.props.profile.nfcId);
+          /*const nfcId = this.props.profile.nfcId.toUpperCase();
+          const reservedArray = this.state.reservedArray;
+          console.log(nfcId);
+          console.log(reservedArray);*/
+          let isBooked = this.state.reserved;
+          //console.log(isBooked);
 
           if (isBooked) {
               await this.setState({ routeState: 'bookedStatus' });
@@ -173,8 +172,13 @@ class ActivityBooking extends React.Component {
     }
 
     render() {
+      let  contentMainContainer = {
+            minHeight: window.innerHeight - 200,
+            paddingTop: 100
+        };
+
         return (
-            <div style={styles.contentMainContainer}>
+            <div style={contentMainContainer}>
                 <div style={styles.contentContainer}>
                     <div style={styles.contentBar}>{this.state.title}</div>
                     {this._renderContent()}
@@ -189,8 +193,18 @@ class ActivityBooking extends React.Component {
       let monthIndex = date.getMonth() + 1;
       let day = date.getDate();
 
-      let dateStr = year + '-' + monthIndex + '-' + day;
+      let dateStr = year + '-' + this.addZeroIfSingle(monthIndex) + '-' + this.addZeroIfSingle(day);
+      //console.log(dateStr);
+      //return '2018-02-08';
       return dateStr;
+    }
+
+    addZeroIfSingle(num){
+      if(num < 10){
+        return '0' + String(num);
+      }else{
+        return '' + String(num);
+      }
     }
 
     GetWeekDayString(weekDay){
@@ -272,7 +286,7 @@ class ActivityBooking extends React.Component {
       const activity = this.props.activity;
       //console.log(prfl);
       //console.log(activity);
-      console.log(prfl);
+      //console.log(prfl);
       const data = {
         MEMID: prfl.residentId,
         CTRID: 'JCH',
@@ -282,7 +296,7 @@ class ActivityBooking extends React.Component {
         IsMbr: '1',
         ErlPhone: '12345678',
         EvtCosID: '1',
-        Reserve: reserve? 'RSVD':'CANN'
+        EvtAct: reserve? 'RSVD':'CANN'
       }
       /*const data = {
         MEMID:"JCH2018024",
@@ -306,7 +320,8 @@ class ActivityBooking extends React.Component {
       .then(res=>{
         console.log(res);
         this.setState({
-          routeState: !reserve? 'cancelConfirm': 'bookingSuccess'
+          routeState: !reserve? 'cancelConfirm': 'bookingSuccess',
+          reserved: reserve
         });
       }).catch(err=>{
         console.log(err);

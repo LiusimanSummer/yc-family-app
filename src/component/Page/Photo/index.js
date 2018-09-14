@@ -34,8 +34,14 @@ export default class Photo extends React.Component {
     }
 
     render() {
+      let imageContainer = {
+        paddingTop: 55,
+        minHeight: window.innerHeight - 150,
+        width: "100%",
+        textAlign: 'center'
+      };
       return (
-        <div style={styles.imageContainer}>
+        <div style={imageContainer}>
             {this._renderImages()}
           <Button text='回到頂部' onClick={()=>{window.scrollTo(0,0)}}/>
         </div>
