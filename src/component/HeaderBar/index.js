@@ -11,7 +11,8 @@ const styles = {
         width: 40,
         position: 'absolute',
         left: 0,
-        top: 0
+        top: 0,
+        cursor: 'pointer'
     }
 };
 
@@ -111,16 +112,15 @@ export default class HeaderBar extends React.Component {
         };
 
         let logoutStyle = {
-            fontSize: 17,
+            fontSize: 30,
             //fontFamily: 'source-han-sans-traditional',
             color: this.state.titleBarTextColor,
-            marginTop: 26,
-            paddingRight: 20,
             //height: 75,
             dispaly: 'inline-block',
             position: 'absolute',
-            right: 0,
-            top: 0
+            right: 25,
+            top: 15,
+            cursor: 'pointer'
         }
 
         return (

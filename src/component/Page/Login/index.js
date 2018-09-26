@@ -51,6 +51,7 @@ const styles = {
         borderRadius: 5,
         color: '#FCFCFC',
         border: '0px solid',
+        cursor: 'pointer'
     },
     errorContainer: {
         padding: 10,
@@ -110,9 +111,9 @@ export default class Login extends React.Component {
     render() {
       const idPlaceHolder = '院友帳戶 (與互動小天地相同)';
       const pwPlaceHolder = '院友密碼 (與互動小天地相同)';
-let middleContainer = {
-    minHeight: window.innerHeight - 100
-}
+      let middleContainer = {
+          minHeight: window.innerHeight - 100
+      }
         return (
             <div style={middleContainer}>
                 <img style={styles.image} src={require('../../../images/FAC003.png')} alt=''/>

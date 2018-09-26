@@ -43,14 +43,14 @@ class Meal extends React.Component {
       return this.state.mealMenu.map((meal,i)=>{
         if(!meal){ return null;}
         return(
-          <div key={i} style={styles.mealMenuContainer}>
-            <div style={styles.mealMenuTitleBar1}>
-              <div style={styles.textAlignMiddleTitle}>
+          <div key={i} style={this.styles.mealMenuContainer}>
+            <div style={this.styles.mealMenuTitleBar1}>
+              <div style={this.styles.textAlignMiddleTitle}>
                 {meal.MeaTyp}
               </div>
             </div>
-            <div style={styles.mealDetail}>
-              <div style={styles.textAlignMiddle}>
+            <div style={this.styles.mealDetail}>
+              <div style={this.styles.textAlignMiddle}>
                 {meal.MeaDes}
               </div>
             </div>
@@ -62,6 +62,74 @@ class Meal extends React.Component {
 
 
     render() {
+
+      this.styles = {
+
+          mealMainContainer: {
+            width: window.innerWidth,
+            minHeight: (window.innerHeight - 150),
+            paddingTop: 80,
+            // paddingLeft: 20,
+            // paddingRight: 20,
+            textAlign: 'center',
+            display: 'table'
+          },
+          mealMenuContainer: {
+            width: window.innerWidth * 0.9,
+            height: (window.innerHeight - 100) * 0.2,
+            borderRadius: 10,
+            textAlign: 'center',
+            margin: 'auto',
+            boxShadow: '0px 5px 20px #CCBFBD',
+            marginTop: 20,
+            backgroundColor: "#FFF8EE",
+          },
+          mealMenuTitleBar1: {
+            width: '100%',
+            textAlign: 'center',
+            backgroundColor: "#003E56",
+            fontSize: 20,
+            color: "#FFF7EE",
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10
+          },
+          mealMenuTitleBar2: {
+            width: '100%',
+            textAlign: 'center',
+            backgroundColor: "#046787",
+            fontSize: 20,
+            color: "#FFF7EE",
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10
+          },
+          mealDetail: {
+            width: '100%',
+            height: (window.innerHeight - 100) * 0.18 - 30,
+            textAlign: 'center',
+            backgroundColor: "#FFF8EE",
+            fontSize: 18,
+            color: "#1A1A1A",
+            borderBottomLeftRadius: 10,
+            borderBottomRightRadius: 10,
+            position: 'relative'
+          },
+          textAlignMiddle: {
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            width: '90%',
+            paddingTop: (window.innerHeight - 100) * 0.09 - 29,
+            paddingLeft: 10,
+            paddingRight: 10
+          },
+          textAlignMiddleTitle: {
+            width: '100%',
+            textAlign: 'center',
+            paddingTop: 2,
+            paddingBottom: 2
+          }
+      };
+
       let container= {
           width: window.innerWidth,
           minHeight: window.innerHeight - 150,
@@ -78,72 +146,5 @@ class Meal extends React.Component {
       );
     }
 }
-
-const styles = {
-
-    mealMainContainer: {
-      width: window.innerWidth,
-      minHeight: (window.innerHeight - 150),
-      paddingTop: 80,
-      // paddingLeft: 20,
-      // paddingRight: 20,
-      textAlign: 'center',
-      display: 'table'
-    },
-    mealMenuContainer: {
-      width: window.innerWidth * 0.9,
-      height: (window.innerHeight - 100) * 0.2,
-      borderRadius: 10,
-      textAlign: 'center',
-      margin: 'auto',
-      boxShadow: '0px 5px 20px #CCBFBD',
-      marginTop: 20,
-      backgroundColor: "#FFF8EE",
-    },
-    mealMenuTitleBar1: {
-      width: '100%',
-      textAlign: 'center',
-      backgroundColor: "#003E56",
-      fontSize: 20,
-      color: "#FFF7EE",
-      borderTopLeftRadius: 10,
-      borderTopRightRadius: 10
-    },
-    mealMenuTitleBar2: {
-      width: '100%',
-      textAlign: 'center',
-      backgroundColor: "#046787",
-      fontSize: 20,
-      color: "#FFF7EE",
-      borderTopLeftRadius: 10,
-      borderTopRightRadius: 10
-    },
-    mealDetail: {
-      width: '100%',
-      height: (window.innerHeight - 100) * 0.18 - 30,
-      textAlign: 'center',
-      backgroundColor: "#FFF8EE",
-      fontSize: 18,
-      color: "#1A1A1A",
-      borderBottomLeftRadius: 10,
-      borderBottomRightRadius: 10,
-      position: 'relative'
-    },
-    textAlignMiddle: {
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
-      width: '90%',
-      paddingTop: (window.innerHeight - 100) * 0.09 - 29,
-      paddingLeft: 10,
-      paddingRight: 10
-    },
-    textAlignMiddleTitle: {
-      width: '100%',
-      textAlign: 'center',
-      paddingTop: 2,
-      paddingBottom: 2
-    }
-};
 
 export default Meal;

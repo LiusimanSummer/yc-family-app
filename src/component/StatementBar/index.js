@@ -3,12 +3,14 @@ import React from 'react';
 const styles = {
     statementContainer: {
         paddingTop: 15,
-        paddingBottom: 15
+        paddingBottom: 15,
+        backgroundColor: '#FCF4E7'
     },
     statement: {
         color: '#666666',
         fontSize: 12,
-        display: 'inline'
+        display: 'inline',
+        cursor: 'pointer'
     }
 };
 
@@ -33,7 +35,7 @@ export default class StatementBar extends React.Component {
                 <br />
                 <div style={styles.statement}>
                     版權所有©2018仁濟醫院董事局
-                    </div>
+                </div>
             </div>
 
 

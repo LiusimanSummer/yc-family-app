@@ -25,9 +25,27 @@ class ActivityPage extends React.Component {
   }
 
   _renderActivities = () => {
+    const activityContainer = {
+        //width: '80%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: window.innerHeight * 0.075,
+        fontSize: window.innerHeight * 0.03,
+        color: '#1A1A1A',
+        textAlign: 'center',
+        backgroundColor: "#FFF8EE",
+        verticalAlign: 'middle',
+        marginTop: 25,
+        padding: 25,
+        borderRadius: 10,
+        boxShadow: '0px 5px 20px #CCBFBD',
+        isOpenDialog: false,
+        cursor: 'pointer'
+    }
     return this.state.list.map((activity, index) => {
         return (
-          <div key={index} style={styles.activityContainer} onClick={() => this.props.activitySelected(activity)}>
+          <div key={index} style={activityContainer} onClick={() => this.props.activitySelected(activity)}>
             {activity.EvtNam}
           </div>
         )
@@ -44,33 +62,14 @@ class ActivityPage extends React.Component {
         margin: 'auto'
     };
     return (
-      <div style={styles.container}>
+      <div>
         <div style={activityListContainer}>
           {this._renderActivities()}
         </div>
-        <div style={styles.homeContainer}>
-          <Button text='回到頂部' onClick={()=>{window.scrollTo(0,0)}}/>
-        </div>
+        <Button text='回到頂部' onClick={()=>{window.scrollTo(0,0)}}/>
       </div>
     );
   }
 }
-
-const styles = {
-    activityContainer: {
-        //width: '80%',
-        //height: 64,
-        fontSize: 18,
-        color: '#1A1A1A',
-        textAlign: 'center',
-        backgroundColor: "#FFF8EE",
-        verticalAlign: 'middle',
-        marginTop: 25,
-        padding: 25,
-        borderRadius: 10,
-        boxShadow: '0px 5px 20px #CCBFBD',
-        isOpenDialog: false
-    }
-};
 
 export default ActivityPage;

@@ -231,7 +231,8 @@ export default class Main extends React.Component {
         let curPage = this.state.currentPage;
         let container = {
             width: this.state.dimemsion.width,
-            minHeight: this.state.dimemsion.height,
+            height: this.state.dimemsion.height,
+            minHeight: '720px',
             backgroundColor: '#FCF4E7',
             textAlign: 'center',
             display: 'flex',
