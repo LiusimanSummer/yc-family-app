@@ -2,14 +2,14 @@ import React from 'react';
 
 const styles = {
     homeBtn: {
-        width: window.innerWidth * 0.5,
+        width: '50%',
         backgroundColor: '#53C2BB',
         fontSize: 20,
         padding: 10,
-        textAlign: 'center',
         color: "#FFF7EE",
         borderRadius: 5,
-        marginTop: 25
+        marginTop: 20,
+        marginLeft: '25%'
     }
 };
 
@@ -22,7 +22,7 @@ export default class Button extends React.Component {
     }
     render() {
         return (
-          <button onClick={this.props.onClick} style={styles.homeBtn} >{this.props.text}</button>
+          <div onClick={this.props.onClick} style={styles.homeBtn} >{this.props.text}</div>
         );
     }
 }

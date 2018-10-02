@@ -66,8 +66,8 @@ class Meal extends React.Component {
       this.styles = {
 
           mealMainContainer: {
-            width: window.innerWidth,
-            minHeight: (window.innerHeight - 150),
+            width: '100%',
+            minHeight: (this.props.innerHeight - 150),
             paddingTop: 80,
             // paddingLeft: 20,
             // paddingRight: 20,
@@ -75,8 +75,8 @@ class Meal extends React.Component {
             display: 'table'
           },
           mealMenuContainer: {
-            width: window.innerWidth * 0.9,
-            height: (window.innerHeight - 100) * 0.2,
+            width: '90%',
+            height: (this.props.innerHeight - 100) * 0.2,
             borderRadius: 10,
             textAlign: 'center',
             margin: 'auto',
@@ -104,7 +104,7 @@ class Meal extends React.Component {
           },
           mealDetail: {
             width: '100%',
-            height: (window.innerHeight - 100) * 0.18 - 30,
+            height: (this.props.innerHeight - 100) * 0.18 - 30,
             textAlign: 'center',
             backgroundColor: "#FFF8EE",
             fontSize: 18,
@@ -118,7 +118,7 @@ class Meal extends React.Component {
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
             width: '90%',
-            paddingTop: (window.innerHeight - 100) * 0.09 - 29,
+            paddingTop: (this.props.innerHeight - 100) * 0.09 - 29,
             paddingLeft: 10,
             paddingRight: 10
           },
@@ -131,8 +131,8 @@ class Meal extends React.Component {
       };
 
       let container= {
-          width: window.innerWidth,
-          minHeight: window.innerHeight - 150,
+          width: '100%',
+          minHeight: this.props.innerHeight - 150,
           backgroundColor: '#FCF4E7',
           textAlign: 'center',
           margin: 'auto',

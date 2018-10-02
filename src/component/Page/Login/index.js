@@ -89,34 +89,36 @@ export default class Login extends React.Component {
         };
     }
 
-    login(event){
-      event.preventDefault();
-      const id = document.getElementById("id").value;
-      const pw = document.getElementById("pw").value;
+    login(event) {
+        event.preventDefault();
+        const id = document.getElementById("id").value;
+        const pw = document.getElementById("pw").value;
 
-      //console.log("login " + id + " / " + pw);
-      this.props.login(id,pw);
+        //console.log("login " + id + " / " + pw);
+        this.props.login(id, pw);
     }
 
-    failedMessage(){
-      const style = {
-        width: '100%',
-        height: '25px',
-        color: 'red',
-        fontWeight: 'bold'
-      }
-      return <div style={style}>登入失敗: 帳戶或密碼錯誤!</div>
+    failedMessage() {
+        const style = {
+            width: '100%',
+            height: '25px',
+            color: 'red',
+            fontWeight: 'bold'
+        }
+        return <div style={style}>登入失敗: 帳戶或密碼錯誤!</div>
     }
 
     render() {
-      const idPlaceHolder = '院友帳戶 (與互動小天地相同)';
-      const pwPlaceHolder = '院友密碼 (與互動小天地相同)';
-      let middleContainer = {
-          minHeight: window.innerHeight - 100
-      }
+        const idPlaceHolder = '院友帳戶 (與互動小天地相同)';
+        const pwPlaceHolder = '院友密碼 (與互動小天地相同)';
+        let middleContainer = {
+            minHeight: this.props.innerHeight - 100,
+            width: this.props.innerWidth,
+            //   minHeight: '720px'
+        }
         return (
             <div style={middleContainer}>
-                <img style={styles.image} src={require('../../../images/FAC003.png')} alt=''/>
+                <img style={styles.image} src={require('../../../images/FAC003.png')} alt='' />
                 <div style={styles.subTitle}>仁濟心連心網站</div>
                 <form style={styles.formContainer}>
                     <input placeHolder={idPlaceHolder} id="id" style={styles.input} type="text" name="user" />
@@ -124,14 +126,14 @@ export default class Login extends React.Component {
                     <input placeHolder={pwPlaceHolder} id="pw" style={styles.input} type="password" name="password" />
                     <br />
                     {!this.state.isLogin && <div style={styles.errorContainer}>
-                        {this.state.errorMsg !== '' && <img style={styles.errorIcon} src={require('../../../images/FAC005.png')} alt=''/>}
+                        {this.state.errorMsg !== '' && <img style={styles.errorIcon} src={require('../../../images/FAC005.png')} alt='' />}
                         <div style={styles.errorMsg}>{this.state.errorMsg}</div>
                     </div>}
                     {this.state.isLogin && <div style={styles.errorContainer}></div>}
                     {this.props.mainState.loginFailed && this.failedMessage()}
-                    <input style={styles.submitBtn} type="submit" value="登入"  onClick = {this.login.bind(this)}/>
+                    <input style={styles.submitBtn} type="submit" value="登入" onClick={this.login.bind(this)} />
                 </form>
-                <img style={styles.YCIcon} src={require('../../../images/FAL001.png')} alt=''/>
+                <img style={styles.YCIcon} src={require('../../../images/FAL001.png')} alt='' />
             </div>
         );
     }

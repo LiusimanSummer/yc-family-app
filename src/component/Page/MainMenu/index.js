@@ -40,13 +40,14 @@ export default class MainMenu extends React.Component {
       let container = {
         display: 'flex',
         flexFlow: 'column nowrap',
-        width: window.innerWidth,
-        height: window.innerHeight - 150,
-        minHeight: '720px',
+        width: '100%',
+        height: this.props.innerHeight - 150,
+        minHeight: '600px',
         backgroundColor: '#FCF4E7',
         textAlign: 'center',
         margin: 'auto',
-        paddingTop:75
+        paddingTop:75,
+        paddingBottom: 75,
       };
 
       const centerContainer = {

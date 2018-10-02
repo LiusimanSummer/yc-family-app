@@ -30,8 +30,8 @@ class ActivityPage extends React.Component {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: window.innerHeight * 0.075,
-        fontSize: window.innerHeight * 0.03,
+        minHeight: this.props.innerHeight * 0.075,
+        fontSize: this.props.innerHeight * 0.03,
         color: '#1A1A1A',
         textAlign: 'center',
         backgroundColor: "#FFF8EE",
@@ -55,14 +55,15 @@ class ActivityPage extends React.Component {
 
   render() {
     let activityListContainer = {
-        minHeight: window.innerHeight - 150,
+        // height: this.props.innerHeight - 150,
+        // minHeight: '505px',
         paddingTop: 75,
-        width: window.innerWidth * 0.9,
+        width: '90%',
         textAlign: 'center',
-        margin: 'auto'
+        margin: 'auto',
     };
     return (
-      <div>
+      <div style = {{padding: 5}}>
         <div style={activityListContainer}>
           {this._renderActivities()}
         </div>

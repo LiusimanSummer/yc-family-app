@@ -1,32 +1,20 @@
 import React from 'react';
 import Content from './content.json';
 const styles = {
-    container: {
-        width: '100%',
-        minHeight: window.innerHeight,
-        backgroundColor: '#FCF4E7',
-        //textAlign: 'center',
-        margin: 'auto',
-    },
     statementContent: {
         color: '#666666',
         fontSize: 15,
-        marginBottom: 10,
-        textAlign: 'left'
+        //marginBottom: 10,
+        textAlign: 'left',
+        padding: 10,
+        
     },
     statementSubTitle: {
         color: '#1A1A1A',
         fontSize: 15,
-        textAlign: 'left'
-    },
-    detailContainer: {
-        color: '#666666',
-        fontSize: 12,
-        //marginTop: 80,
-        paddingTop:90,
-        paddingLeft: 12,
-        paddingRight: 12,
-        minHeight: window.innerHeight - 200
+        textAlign: 'left',
+        paddingLeft: 10,
+        paddingRight: 10
     },
 };
 class Statement extends React.Component {
@@ -74,15 +62,17 @@ class Statement extends React.Component {
           fontSize: 12,
           //marginTop: 80,
           paddingTop:90,
-          paddingLeft: 12,
-          paddingRight: 12,
-          minHeight: window.innerHeight - 200,
-          width:'100%'
+          height: this.props.innerHeight - 280,
+          minHeight: '525px',
+          width:'100%',
+          backgroundColor: '#FCF4E7',
+          overflow: 'scroll'
       };
 
         return (
                 <div style={detailContainer}>
                     {this._renderContent()}
+
                 </div>
         );
     }

@@ -59,8 +59,8 @@ class ActivityBooking extends React.Component {
 
         return (
             <div>
-                <div style={styles.text2}>確定留位 ?</div>
-                <div style={{ width: '100%', textAlign: 'center', marginTop: window.innerHeight * 0.2 }}>
+                <div style={this.styles.text2}>確定留位 ?</div>
+                <div style={{ width: '100%', textAlign: 'center', marginTop: this.props.innerHeight * 0.2 }}>
                     <div style={styles.sureBtn} onClick={() => this.btnClick('bookRequest_ok')}>確定留位</div>
                     <div style={styles.cancelBtn} onClick={() => this.btnClick('bookRequest_cancel')}>取消留位</div>
                 </div>
@@ -72,9 +72,9 @@ class ActivityBooking extends React.Component {
 
         return (
             <div style={{ maxheight: 50 }}>
-                <div style={styles.text}>你已成功留位！ <br />有關同事將會與你接洽。</div>
+                <div style={this.styles.text}>你已成功留位！ <br />有關同事將會與你接洽。</div>
                 <div style={styles.textContact}>如有問題請致電 24086639 聯絡我們。</div>
-                <div style={{ width: '100%', textAlign: 'center', marginTop: window.innerHeight * 0.1 }}>
+                <div style={{ width: '100%', textAlign: 'center', marginTop:this.props.innerHeight * 0.1 }}>
                     <div style={styles.sureBtn} onClick={() => this.btnClick('bookingSuccess_ok')}>確定</div>
                 </div>
             </div>);
@@ -84,8 +84,8 @@ class ActivityBooking extends React.Component {
     _renderBookedStatus = () => {
         return (
             <div style={{ maxheight: 50 }}>
-                <div style={styles.text2}>您已留位，<br />需要<span style={{ color: '#E75125' }}>取消</span>留位嗎？</div>
-                <div style={{ width: '100%', textAlign: 'center', marginTop: window.innerHeight * 0.2 }}>
+                <div style={this.styles.text2}>您已留位，<br />需要<span style={{ color: '#E75125' }}>取消</span>留位嗎？</div>
+                <div style={{ width: '100%', textAlign: 'center', marginTop: this.props.innerHeight * 0.2 }}>
                     <div style={styles.sureBtn} onClick={() => this.btnClick('bookedStatus_cancel')}>確定取消</div>
                     <div style={styles.cancelBtn} onClick={() => this.btnClick('bookedStatus_keep')}>保留留位</div>
                 </div>
@@ -95,9 +95,9 @@ class ActivityBooking extends React.Component {
     _renderCancelConfirm = () => {
         return (
             <div style={{ maxheight: 50 }}>
-                <div style={styles.text}>你已成功取消留位！</div>
+                <div style={this.styles.text}>你已成功取消留位！</div>
                 <div style={styles.textContact}>如有問題請致電 24086639 聯絡我們。</div>
-                <div style={{ width: '100%', textAlign: 'center', marginTop: window.innerHeight * 0.1 }}>
+                <div style={{ width: '100%', textAlign: 'center', marginTop: this.props.innerHeight * 0.1 }}>
                     <div style={styles.sureBtn} onClick={() => this.btnClick('cancelConfirm_ok')}>確定</div>
                 </div>
             </div>);
@@ -173,8 +173,22 @@ class ActivityBooking extends React.Component {
 
     render() {
       let  contentMainContainer = {
-            minHeight: window.innerHeight - 200,
+            minHeight: this.props.innerHeight - 200,
             paddingTop: 100
+        };
+
+         this.styles = {
+            text: {
+                fontSize: 24,
+                color: '#1A1A1A',
+                marginTop: this.props.innerHeight * 0.1
+            },
+            text2: {
+                fontSize: 24,
+                color: '#1A1A1A',
+                marginTop: this.props.innerHeight * 0.15
+            },
+        
         };
 
         return (
@@ -334,10 +348,6 @@ class ActivityBooking extends React.Component {
 
 
 const styles = {
-    contentMainContainer: {
-        minHeight: window.innerHeight - 200,
-        paddingTop: 100
-    },
 
     contentContainer: {
         width: '85%',
@@ -355,7 +365,6 @@ const styles = {
         width: '100%',
         paddingRight: 10,
         paddingLeft: 10,
-        //height: window.innerHeight*0.45,
     },
     checkBookingBtn: {
         backgroundColor: '#EAAF2D',
@@ -424,16 +433,16 @@ const styles = {
         marginLeft: 30
     },
 
-    text: {
-        fontSize: 24,
-        color: '#1A1A1A',
-        marginTop: window.innerHeight * 0.1
-    },
-    text2: {
-        fontSize: 24,
-        color: '#1A1A1A',
-        marginTop: window.innerHeight * 0.15
-    },
+    // text: {
+    //     fontSize: 24,
+    //     color: '#1A1A1A',
+    //     marginTop: window.innerHeight * 0.1
+    // },
+    // text2: {
+    //     fontSize: 24,
+    //     color: '#1A1A1A',
+    //     marginTop: window.innerHeight * 0.15
+    // },
     textContact: {
         fontSize: 16,
         color: '#1A1A1A',

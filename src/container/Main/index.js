@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import StatementBar from './../../component/StatementBar';
 import HeaderBar from './../../component/HeaderBar';
 import Page from './../../component/Page';
@@ -19,58 +19,90 @@ export default class Main extends React.Component {
                 titleBarBackgroundColor: '#FFF6ED',
                 titleBarTextColor: '#666666',
             },
-            profile:{},
-            dimemsion:{
-              width: 0,
-              height: 0
-            }
+            profile: {},
+            dimemsion: {
+                width: window.innerWidth,
+                height: window.innerHeight
+            },
         };
         this.autoLogin();
     }
 
-    autoLogin(){
-      const id = localStorage.getItem('id');
-      const pw = localStorage.getItem('pw');
-      if(id && pw){ this.login(id,pw); }
+    autoLogin() {
+        const id = localStorage.getItem('id');
+        const pw = localStorage.getItem('pw');
+        if (id && pw) { this.login(id, pw); }
     }
 
     componentDidMount() {
-      this.updateWindowDimensions();
-      window.addEventListener('resize', this.updateWindowDimensions.bind(this));
-      window.addEventListener('orientationchange', this.updateWindowDimensions.bind(this));
+        //this.updateWindowDimensions();
+       // window.addEventListener('resize', this.updateWindowDimensions.bind(this));
+        window.addEventListener('orientationchange', this.updateWindowDimensions2.bind(this));
     }
 
     componentWillUnmount() {
-      window.removeEventListener('resize', this.updateWindowDimensions.bind(this));
-      window.removeEventListener('orientationchange', this.updateWindowDimensions.bind(this));
+       // window.removeEventListener('resize', this.updateWindowDimensions.bind(this));
+        window.removeEventListener('orientationchange', this.updateWindowDimensions2.bind(this));
+    }
+
+    updateWindowDimensions2() {
+        let width = this.state.dimemsion.width;
+        let height = this.state.dimemsion.height;
+
+        // let width = window.innerWidth;
+        // let height = window.innerHeight;
+        // let isPortrait = true;
+        // if(width > height){
+        //     this.setState({
+        //         dimemsion: {
+        //             width: document.body.offsetHeight,
+        //             height: document.body.offsetWidth
+        //         }
+        //     });
+        // }else{
+        //     this.setState({
+        //         dimemsion: {
+        //             width: document.body.offsetWidth,
+        //             height: document.body.offsetHeight
+        //         }
+        //     });
+        // }
+
+        this.setState({
+            dimemsion: {
+                width: height,
+                height: width
+            }
+        });
+       
     }
 
     updateWindowDimensions() {
-      const width = this.state.dimemsion.width;
-      this.setState({
-        dimemsion:{
-          width: window.innerWidth,
-          height: window.innerHeight
-        }
-      });
-      console.log(width);
-      console.log(window.innerWidth);
-      if(width - window.innerWidth > 1){
-        window.location.reload();
-      }
-      //window.location.reload();
+       // const width = this.state.dimemsion.width;
+        this.setState({
+            dimemsion: {
+                width: window.innerWidth,
+                height: window.innerHeight
+            }
+        });
+        // console.log(width);
+        // console.log(window.innerWidth);
+        // if (width - window.innerWidth > 1) {
+        //     window.location.reload();
+        // }
+        //window.location.reload();
     }
 
-    logout(){
-      this.setState({
-        isLogin: false,
-        currentPage: {
-            login: true,
-            title: '仁濟心連心',
-            titleBarBackgroundColor: '#FFF6ED',
-            titleBarTextColor: '#666666',
-        }
-      })
+    logout() {
+        this.setState({
+            isLogin: false,
+            currentPage: {
+                login: true,
+                title: '仁濟心連心',
+                titleBarBackgroundColor: '#FFF6ED',
+                titleBarTextColor: '#666666',
+            }
+        })
     }
 
     statementClick = async (statementProps) => {
@@ -92,42 +124,10 @@ export default class Main extends React.Component {
     //     window.location.reload(true);
     // }
 
-    login = async (id,pw) => {
+    login = async (id, pw) => {
 
-      //const userid = "alex3288@gmail.com"
-      //const password = "asdf2013"
-
-      /*let _currentPage = {
-          title: '仁濟心連心',
-          mainmenu: true,
-          logoutBtn: true,
-          titleBarBackgroundColor: '#FFF6ED',
-          titleBarTextColor: '#666666',
-          titleBackImage: 'FAC012_b.png'
-      }
-      this.setState({
-        currentPage: _currentPage,
-        profile: {}
-      });
-      return;*/
-
-      axios.post(process.env.REACT_APP_LOGIN,JSON.stringify({}),{
-          headers: {
-            'userid': id,
-            'password': pw
-          }
-        }
-      )
-      .then(async (res)=>{
-
-        localStorage.setItem('id', id);
-        localStorage.setItem('pw', pw);
-
-        console.log(res);
-        if(!res.data.status){
-          this.setState({ loginFailed: true });
-          return;
-        }
+        //const userid = "alex3288@gmail.com"
+        //const password = "asdf2013"
 
         let _currentPage = {
             title: '仁濟心連心',
@@ -138,15 +138,48 @@ export default class Main extends React.Component {
             titleBackImage: 'FAC012_b.png'
         }
         this.setState({
-          currentPage: _currentPage,
-          profile: res.data
+            currentPage: _currentPage,
+            profile: {}
         });
-
-        this.state.trace.splice(0, 0, _currentPage);
-      }).catch(err=>{
-        this.setState({ loginFailed: true });
-        console.log(err);
-      });
+        return;
+        /*
+              axios.post(process.env.REACT_APP_LOGIN,JSON.stringify({}),{
+                  headers: {
+                    'userid': id,
+                    'password': pw
+                  }
+                }
+              )
+              .then(async (res)=>{
+        
+                localStorage.setItem('id', id);
+                localStorage.setItem('pw', pw);
+        
+                console.log(res);
+                if(!res.data.status){
+                  this.setState({ loginFailed: true });
+                  return;
+                }
+        
+                let _currentPage = {
+                    title: '仁濟心連心',
+                    mainmenu: true,
+                    logoutBtn: true,
+                    titleBarBackgroundColor: '#FFF6ED',
+                    titleBarTextColor: '#666666',
+                    titleBackImage: 'FAC012_b.png'
+                }
+                this.setState({
+                  currentPage: _currentPage,
+                  profile: res.data
+                });
+        
+                this.state.trace.splice(0, 0, _currentPage);
+              }).catch(err=>{
+                this.setState({ loginFailed: true });
+                console.log(err);
+              });
+              */
 
     }
 
@@ -229,35 +262,41 @@ export default class Main extends React.Component {
 
     render() {
         let curPage = this.state.currentPage;
+       
         let container = {
-            width: this.state.dimemsion.width,
+            width: '100%',//this.state.dimemsion.width,
             height: this.state.dimemsion.height,
             minHeight: '720px',
             backgroundColor: '#FCF4E7',
             textAlign: 'center',
             display: 'flex',
             flexFlow: 'column nowrap',
-            orient: 'portrait'
+            position: 'relative',
+           // orient: 'portrait',
+            //transform: 'scale(1, 1)',
+           // zoom:1
         }
         return (
             <div style={container}>
-              <HeaderBar
-                  title={curPage.title}
-                  logoutBtn={curPage.logoutBtn}
-                  backBtn={curPage.backBtn}
-                  backToPreviousPage={this.backToPreviousPage.bind(this)}
-                  titleBarBackgroundColor={this.state.currentPage.titleBarBackgroundColor}
-                  titleBarTextColor={this.state.currentPage.titleBarTextColor}
-                  titleBackImage={this.state.currentPage.titleBackImage}
-                  dimemsion={this.state.dimemsion}
-                  logout={this.logout.bind(this)}/>
-              <Page currentPage={curPage}
-                  mainState={this.state}
-                  login={this.login.bind(this)}
-                  goTo={this.goTo.bind(this)}
-                  activitySelected={this.activitySelected.bind(this)}
-                  profile={this.state.profile}/>
-              <StatementBar statementClick={this.statementClick.bind(this)} />
+                <HeaderBar
+                    title={curPage.title}
+                    logoutBtn={curPage.logoutBtn}
+                    backBtn={curPage.backBtn}
+                    backToPreviousPage={this.backToPreviousPage.bind(this)}
+                    titleBarBackgroundColor={this.state.currentPage.titleBarBackgroundColor}
+                    titleBarTextColor={this.state.currentPage.titleBarTextColor}
+                    titleBackImage={this.state.currentPage.titleBackImage}
+                    dimemsion={this.state.dimemsion}
+                    logout={this.logout.bind(this)} />
+                <Page currentPage={curPage}
+                    mainState={this.state}
+                    login={this.login.bind(this)}
+                    goTo={this.goTo.bind(this)}
+                    activitySelected={this.activitySelected.bind(this)}
+                    profile={this.state.profile}
+                    innerHeight={this.state.dimemsion.height}
+                    innerWidth={this.state.dimemsion.width} />
+                <StatementBar statementClick={this.statementClick.bind(this)} />
             </div>
         );
     }

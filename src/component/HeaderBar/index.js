@@ -89,8 +89,8 @@ export default class HeaderBar extends React.Component {
     render() {
         let titleBarStyle = {
           //flex: 1,
-          width: this.props.dimemsion.width,
-          //width: '100%',
+          //width: this.props.dimemsion.width,
+          width: '100%',
           //height: window.innerHeight,
           backgroundColor: this.state.titleBarBackgroundColor,
           textAlign: 'center',
@@ -99,7 +99,9 @@ export default class HeaderBar extends React.Component {
           alignItems: 'center',
           boxShadow: '0px 1px 15px #E1D2CF',
           position: 'absolute',
+          top: 0,
           verticalAlign: 'middle',
+          display: 'block',
         };
         let titleStyle = {
           fontSize: 24,
@@ -116,7 +118,7 @@ export default class HeaderBar extends React.Component {
             //fontFamily: 'source-han-sans-traditional',
             color: this.state.titleBarTextColor,
             //height: 75,
-            dispaly: 'inline-block',
+            display: 'inline-block',
             position: 'absolute',
             right: 25,
             top: 15,

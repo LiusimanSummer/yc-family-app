@@ -24,14 +24,14 @@ export default class Page extends React.Component {
         let curp = this.state.currentPage;
 
         return (
-            <div>
-                {curp.login && <Login mainState={this.props.mainState} login={this.props.login.bind(this)}/>}
-                {curp.statement && <Statement content={curp.title} />}
-                {curp.mainmenu && <MainMenu goTo = {this.props.goTo.bind(this)}/>}
-                {curp.photo && <Photo />}
-                {curp.meal && <Meal mealMenu={curp.mealMenu} />}
-                {curp.activityList && <Activity activities={curp.activities} activitySelected = {this.props.activitySelected.bind(this)}/>}
-                {curp.activityBooking && <ActivityBooking activity={curp.activity} profile={this.props.profile}/>}
+            <div style = {{ minHeight: '565px',  display: 'block',}}>
+                {curp.login && <Login mainState={this.props.mainState} login={this.props.login.bind(this)} innerHeight = {this.props.innerHeight} innerWidth = {this.props.innerWidth}/>}
+                {curp.statement && <Statement content={curp.title} innerHeight = {this.props.innerHeight}/>}
+                {curp.mainmenu && <MainMenu goTo = {this.props.goTo.bind(this)} innerHeight = {this.props.innerHeight}/>}
+                {curp.photo && <Photo innerHeight = {this.props.innerHeight}/>}
+                {curp.meal && <Meal mealMenu={curp.mealMenu} innerHeight = {this.props.innerHeight}/>}
+                {curp.activityList && <Activity activities={curp.activities} activitySelected = {this.props.activitySelected.bind(this)} innerHeight = {this.props.innerHeight}/>}
+                {curp.activityBooking && <ActivityBooking activity={curp.activity} profile={this.props.profile} innerHeight = {this.props.innerHeight}/>}
             </div>
         );
     }

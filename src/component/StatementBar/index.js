@@ -2,9 +2,10 @@ import React from 'react';
 
 const styles = {
     statementContainer: {
-        paddingTop: 15,
-        paddingBottom: 15,
-        backgroundColor: '#FCF4E7'
+         marginTop: 15,
+        backgroundColor: '#FCF4E7',
+        //display: 'block',
+        height: 50
     },
     statement: {
         color: '#666666',

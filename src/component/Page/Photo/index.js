@@ -35,9 +35,9 @@ export default class Photo extends React.Component {
 
     render() {
       let imageContainer = {
-        paddingTop: 55,
-        minHeight: window.innerHeight - 150,
-        width: window.innerWidth,
+        paddingTop: 75,
+        //minHeight: this.props.innerHeight - 150,
+        width: '100%',
         textAlign: 'center'
       };
       return (
@@ -51,20 +51,10 @@ export default class Photo extends React.Component {
 
 const styles = {
     image: {
-      width: window.innerWidth,
+      width:'100%',
       marginTop: 20,
       maxWidth: 800
       //height: '20%'
     },
-    imageContainer: {
-      paddingTop: 55,
-      minHeight: window.innerHeight - 150,
-      width: "100%",
-      textAlign: 'center'
-    },
-    homeContainer: {
-      textAlign: 'center',
-      width: window.innerWidth
-    }
 
 };
